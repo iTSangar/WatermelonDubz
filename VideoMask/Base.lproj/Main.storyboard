@@ -110,10 +110,10 @@
             </objects>
             <point key="canvasLocation" x="883" y="625"/>
         </scene>
-        <!--Recording View Controller-->
+        <!--RecordingGPU Image-->
         <scene sceneID="0E9-ze-wVO">
             <objects>
-                <viewController id="3mR-Nq-eRD" customClass="RecordingViewController" sceneMemberID="viewController">
+                <viewController id="3mR-Nq-eRD" customClass="RecordingGPUImage" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3cu-Sa-yF7"/>
                         <viewControllerLayoutGuide type="bottom" id="vXv-uT-jbr"/>

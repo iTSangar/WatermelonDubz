@@ -2,7 +2,7 @@
 //  RecordingGPUImage.m
 //  VideoMask
 //
-//  Created by Ítalo Sangar on 9/24/15.
+//  Created by Ítalo Sangar on 9/23/15.
 //  Copyright © 2015 iTSangar. All rights reserved.
 //
 
@@ -63,7 +63,7 @@
     videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait; //portrait
     videoCamera.audioEncodingTarget = nil; //mute microphone
     videoCamera.horizontallyMirrorFrontFacingCamera = YES; //add mirror
-    
+
     
     
     filter = [[GPUImageMaskFilter alloc] init];
@@ -74,7 +74,14 @@
     
     
     GPUImageView *filterView = (GPUImageView *)camView;
-    filterView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
+    //filterView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
+    
+    
+    
+    GPUImageCropFilter *cropFilter = [[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0.125f, 0, 0.75f, 1.0f)];
+    [videoCamera addTarget:cropFilter];
+    [videoCamera forceProcessingAtSizeRespectingAspectRatio:CGSizeMake(480.0, 480.0)];
+    
     
     
     UIImage *inputImage = [UIImage imageNamed:@"new"];
@@ -88,7 +95,7 @@
     NSURL *movieURL = [NSURL fileURLWithPath:pathToMovie];
     movieWriter = [[GPUImageMovieWriter alloc] initWithMovieURL:movieURL size:CGSizeMake(480.0, 640.0)];
     movieWriter.encodingLiveVideo = YES;
-    
+
     [videoCamera addTarget:movieWriter];
     [filter addTarget:filterView];
     
@@ -137,5 +144,14 @@
     end.text = @"";
 }
 
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
