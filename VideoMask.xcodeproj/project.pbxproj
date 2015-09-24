@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7661AFB91BB46F0B00B6E18C /* RecordingSCRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661AFB81BB46F0B00B6E18C /* RecordingSCRecorder.m */; settings = {ASSET_TAGS = (); }; };
+		7661AFBB1BB48B1300B6E18C /* 20sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7661AFBA1BB48B1300B6E18C /* 20sec.mp3 */; settings = {ASSET_TAGS = (); }; };
+		7661AFBE1BB491DF00B6E18C /* PlayerSCRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661AFBD1BB491DF00B6E18C /* PlayerSCRecorder.m */; settings = {ASSET_TAGS = (); }; };
 		76D210631BB1E35A00DDE9AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D210621BB1E35A00DDE9AB /* main.m */; };
 		76D210661BB1E35A00DDE9AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D210651BB1E35A00DDE9AB /* AppDelegate.m */; };
 		76D210691BB1E35A00DDE9AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D210681BB1E35A00DDE9AB /* ViewController.m */; };
@@ -24,6 +26,9 @@
 		27AA4A0B8D1CD727944C7AA9 /* Pods-VideoMask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoMask.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoMask/Pods-VideoMask.release.xcconfig"; sourceTree = "<group>"; };
 		7661AFB71BB46F0B00B6E18C /* RecordingSCRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingSCRecorder.h; sourceTree = "<group>"; };
 		7661AFB81BB46F0B00B6E18C /* RecordingSCRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingSCRecorder.m; sourceTree = "<group>"; };
+		7661AFBA1BB48B1300B6E18C /* 20sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 20sec.mp3; sourceTree = "<group>"; };
+		7661AFBC1BB491DF00B6E18C /* PlayerSCRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSCRecorder.h; sourceTree = "<group>"; };
+		7661AFBD1BB491DF00B6E18C /* PlayerSCRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSCRecorder.m; sourceTree = "<group>"; };
 		76D2105E1BB1E35A00DDE9AB /* VideoMask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoMask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76D210621BB1E35A00DDE9AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76D210641BB1E35A00DDE9AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,6 +94,8 @@
 				76D39C7F1BB31EE300174104 /* RecordingGPUImage.m */,
 				7661AFB71BB46F0B00B6E18C /* RecordingSCRecorder.h */,
 				7661AFB81BB46F0B00B6E18C /* RecordingSCRecorder.m */,
+				7661AFBC1BB491DF00B6E18C /* PlayerSCRecorder.h */,
+				7661AFBD1BB491DF00B6E18C /* PlayerSCRecorder.m */,
 				76D2106A1BB1E35A00DDE9AB /* Main.storyboard */,
 				76D2106D1BB1E35A00DDE9AB /* Assets.xcassets */,
 				76D2106F1BB1E35A00DDE9AB /* LaunchScreen.storyboard */,
@@ -101,6 +108,7 @@
 		76D210611BB1E35A00DDE9AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7661AFBA1BB48B1300B6E18C /* 20sec.mp3 */,
 				76D39C7C1BB31DD100174104 /* trap.mp3 */,
 				76D210621BB1E35A00DDE9AB /* main.m */,
 			);
@@ -176,6 +184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7661AFBB1BB48B1300B6E18C /* 20sec.mp3 in Resources */,
 				76D210711BB1E35A00DDE9AB /* LaunchScreen.storyboard in Resources */,
 				76D39C7D1BB31DD100174104 /* trap.mp3 in Resources */,
 				76D2106E1BB1E35A00DDE9AB /* Assets.xcassets in Resources */,
@@ -242,6 +251,7 @@
 				76D210691BB1E35A00DDE9AB /* ViewController.m in Sources */,
 				76D210661BB1E35A00DDE9AB /* AppDelegate.m in Sources */,
 				76D210631BB1E35A00DDE9AB /* main.m in Sources */,
+				7661AFBE1BB491DF00B6E18C /* PlayerSCRecorder.m in Sources */,
 				7661AFB91BB46F0B00B6E18C /* RecordingSCRecorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
