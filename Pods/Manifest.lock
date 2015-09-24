@@ -1,0 +1,13 @@
+PODS:
+  - GPUImage (0.1.7)
+  - SCRecorder (2.5.3)
+
+DEPENDENCIES:
+  - GPUImage (~> 0.1)
+  - SCRecorder (~> 2.5)
+
+SPEC CHECKSUMS:
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  SCRecorder: a8b1deff74c4e03f4f3cfbfceb8fbc4877d166e4
+
+COCOAPODS: 0.38.2
