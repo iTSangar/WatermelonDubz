@@ -10,6 +10,7 @@
 		7661AFB91BB46F0B00B6E18C /* RecordingSCRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661AFB81BB46F0B00B6E18C /* RecordingSCRecorder.m */; settings = {ASSET_TAGS = (); }; };
 		7661AFBB1BB48B1300B6E18C /* 20sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7661AFBA1BB48B1300B6E18C /* 20sec.mp3 */; settings = {ASSET_TAGS = (); }; };
 		7661AFBE1BB491DF00B6E18C /* PlayerSCRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661AFBD1BB491DF00B6E18C /* PlayerSCRecorder.m */; settings = {ASSET_TAGS = (); }; };
+		7661AFC11BB57B6700B6E18C /* OverlaySCRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661AFC01BB57B6700B6E18C /* OverlaySCRecorder.m */; settings = {ASSET_TAGS = (); }; };
 		76D210631BB1E35A00DDE9AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D210621BB1E35A00DDE9AB /* main.m */; };
 		76D210661BB1E35A00DDE9AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D210651BB1E35A00DDE9AB /* AppDelegate.m */; };
 		76D210691BB1E35A00DDE9AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D210681BB1E35A00DDE9AB /* ViewController.m */; };
@@ -29,6 +30,8 @@
 		7661AFBA1BB48B1300B6E18C /* 20sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 20sec.mp3; sourceTree = "<group>"; };
 		7661AFBC1BB491DF00B6E18C /* PlayerSCRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSCRecorder.h; sourceTree = "<group>"; };
 		7661AFBD1BB491DF00B6E18C /* PlayerSCRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSCRecorder.m; sourceTree = "<group>"; };
+		7661AFBF1BB57B6700B6E18C /* OverlaySCRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlaySCRecorder.h; sourceTree = "<group>"; };
+		7661AFC01BB57B6700B6E18C /* OverlaySCRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlaySCRecorder.m; sourceTree = "<group>"; };
 		76D2105E1BB1E35A00DDE9AB /* VideoMask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoMask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76D210621BB1E35A00DDE9AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76D210641BB1E35A00DDE9AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 				7661AFB81BB46F0B00B6E18C /* RecordingSCRecorder.m */,
 				7661AFBC1BB491DF00B6E18C /* PlayerSCRecorder.h */,
 				7661AFBD1BB491DF00B6E18C /* PlayerSCRecorder.m */,
+				7661AFBF1BB57B6700B6E18C /* OverlaySCRecorder.h */,
+				7661AFC01BB57B6700B6E18C /* OverlaySCRecorder.m */,
 				76D2106A1BB1E35A00DDE9AB /* Main.storyboard */,
 				76D2106D1BB1E35A00DDE9AB /* Assets.xcassets */,
 				76D2106F1BB1E35A00DDE9AB /* LaunchScreen.storyboard */,
@@ -248,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76D39C801BB31EE300174104 /* RecordingGPUImage.m in Sources */,
+				7661AFC11BB57B6700B6E18C /* OverlaySCRecorder.m in Sources */,
 				76D210691BB1E35A00DDE9AB /* ViewController.m in Sources */,
 				76D210661BB1E35A00DDE9AB /* AppDelegate.m in Sources */,
 				76D210631BB1E35A00DDE9AB /* main.m in Sources */,

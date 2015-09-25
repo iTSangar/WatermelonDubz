@@ -9,11 +9,13 @@
 #import "RecordingSCRecorder.h"
 #import "SCRecorder.h"
 #import "PlayerSCRecorder.h"
+#import "OverlaySCRecorder.h"
 
-@interface RecordingSCRecorder () <SCRecorderDelegate>
+@interface RecordingSCRecorder () <SCRecorderDelegate, SCAssetExportSessionDelegate>
 {
     SCRecorder *_recorder;
     SCRecordSession *_recordSession;
+    SCAssetExportSession *_exportSession;
     
     IBOutlet UILabel *end;
     IBOutlet UIButton *rec;
@@ -59,6 +61,7 @@
 {
     [super viewWillDisappear:animated];
     [_recorder stopRunning];
+    [_exportSession cancelExport];
 }
 
 - (void)viewDidLayoutSubviews
@@ -80,34 +83,20 @@
     _recorder.previewView = previewView;
     
     _recorder.initializeSessionLazily = NO;
+    _recorder.videoConfiguration.sizeAsSquare = YES;
     
-    // Get the video configuration object
-    SCVideoConfiguration *video = _recorder.videoConfiguration;
-    // Whether the video should be enabled or not
-    video.enabled = YES;
-    // The bitrate of the video video
-    //video.bitrate = 2000000; // 2Mbit/s
-    // Size of the video output
-    video.size = CGSizeMake(480, 480);
-    // Scaling if the output aspect ratio is different than the output one
-    video.scalingMode = AVVideoScalingModeResizeAspectFill;
-    // The timescale ratio to use. Higher than 1 makes a slow motion, between 0 and 1 makes a timelapse effect
-    video.timeScale = 1;
-    // Whether the output video size should be infered so it creates a square video
-    video.sizeAsSquare = YES;
-    
+    // Set filter || Create filter feature -> https://github.com/rFlex/SCRecorder/issues/182
+    //_recorder.videoConfiguration.filter = [SCFilter filterWithCIFilterName:@"CIPhotoEffectInstant"];
    
-
-    
     NSError *error;
     if (![_recorder prepare:&error]) {
         NSLog(@"Prepare error: %@", error.localizedDescription);
     }
 }
 
-- (void)prepareSession {
+- (void)prepareSession
+{
     if (_recorder.session == nil) {
-        
         SCRecordSession *session = [SCRecordSession recordSession];
         session.fileType = AVFileTypeQuickTimeMovie;
         
@@ -118,12 +107,53 @@
 - (void)saveAndShowSession:(SCRecordSession *)recordSession
 {
     _recordSession = recordSession;
-    [self showVideo];
+    [self mergeVideo];
 }
 
-- (void)showVideo
+- (void)mergeVideo
 {
-    [self performSegueWithIdentifier:@"Preview" sender:self];
+    SCAssetExportSession *exportSession = [[SCAssetExportSession alloc] initWithAsset:_recordSession.assetRepresentingSegments];
+    exportSession.videoConfiguration.preset = SCPresetHighestQuality;
+    exportSession.audioConfiguration.preset = SCPresetHighestQuality;
+    exportSession.videoConfiguration.maxFrameRate = 35;
+    exportSession.outputUrl = _recordSession.outputUrl;
+    exportSession.outputFileType = AVFileTypeMPEG4;
+    exportSession.delegate = self;
+    _exportSession = exportSession;
+    
+    // Show progress here
+    
+    // Overlay
+    OverlaySCRecorder *overlay = [OverlaySCRecorder new];
+    overlay.date = _recorder.session.date;
+    exportSession.videoConfiguration.overlay = overlay;
+    NSLog(@"Starting exporting");
+    
+    // Merge
+    CFTimeInterval time = CACurrentMediaTime();
+    __weak typeof(self) wSelf = self;
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        __strong typeof(self) strongSelf = wSelf;
+        
+        if (!exportSession.cancelled) {
+            NSLog(@"Completed compression in %fs", CACurrentMediaTime() - time);
+        }
+        
+        if (strongSelf != nil) {
+            //strongSelf.exportSession = nil;
+        }
+        
+        NSError *error = exportSession.error;
+        if (exportSession.cancelled) {
+            NSLog(@"Export was cancelled");
+        } else if (error == nil) {
+            [self performSegueWithIdentifier:@"Preview" sender:self];
+        } else {
+            if (!exportSession.cancelled) {
+                [[[UIAlertView alloc] initWithTitle:@"Process failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }
+        }
+    }];
 }
 
 - (IBAction)startRec:(id)sender
@@ -246,12 +276,31 @@
 }
 
 
+#pragma mark - SCAssetExportSessionDelegate
+
+- (void)assetExportSessionDidProgress:(SCAssetExportSession *)assetExportSession
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        float progress = assetExportSession.progress;
+        
+        NSLog(@"%f", progress);
+        
+        // update progress
+        //CGRect frame =  self.progressView.frame;
+        //frame.size.width = self.progressView.superview.frame.size.width * progress;
+        //self.progressView.frame = frame;
+    });
+}
+
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.destinationViewController isKindOfClass:[PlayerSCRecorder class]]) {
         PlayerSCRecorder *videoPlayer = segue.destinationViewController;
+        [_recordSession removeLastSegment];
+        [_recordSession addSegment:[SCRecordSessionSegment segmentWithURL:_exportSession.outputUrl info:nil]];
         videoPlayer.recordSession = _recordSession;
     }
 }

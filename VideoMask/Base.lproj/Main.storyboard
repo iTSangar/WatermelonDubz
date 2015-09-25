@@ -217,19 +217,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IYm-be-w7f">
-                                <rect key="frame" x="32" y="150" width="300" height="300"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IYm-be-w7f">
+                                <rect key="frame" x="10" y="150" width="300" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="IYm-be-w7f" secondAttribute="height" multiplier="1:1" id="Fn6-Lh-bWa"/>
+                                    <constraint firstAttribute="width" constant="300" id="1cC-Uc-jWV"/>
+                                    <constraint firstAttribute="height" constant="300" id="2pd-Yl-Zhf"/>
+                                    <constraint firstAttribute="width" secondItem="IYm-be-w7f" secondAttribute="height" multiplier="1:1" id="kca-76-sFC"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.78738981490000004" green="0.2464441359" blue="0.27221894260000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="IYm-be-w7f" firstAttribute="centerY" secondItem="Ld7-T8-ggl" secondAttribute="centerY" id="N6H-JA-cPb"/>
-                            <constraint firstItem="IYm-be-w7f" firstAttribute="top" secondItem="coa-LU-sSn" secondAttribute="bottom" constant="86" id="cJw-NF-FXB"/>
-                            <constraint firstItem="IYm-be-w7f" firstAttribute="centerX" secondItem="Ld7-T8-ggl" secondAttribute="centerX" id="eLh-jm-rTf"/>
+                            <constraint firstItem="IYm-be-w7f" firstAttribute="leading" secondItem="Ld7-T8-ggl" secondAttribute="leading" constant="10" id="eKT-0V-KRd"/>
+                            <constraint firstItem="IYm-be-w7f" firstAttribute="centerY" secondItem="Ld7-T8-ggl" secondAttribute="centerY" id="zk2-uz-36Z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Preview" id="fKW-F5-oru">

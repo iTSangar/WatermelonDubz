@@ -11,6 +11,7 @@
 
 @interface PlayerSCRecorder : UIViewController
 
+@property (strong, nonatomic) SCAssetExportSession *exportSession;
 @property (strong, nonatomic) SCRecordSession *recordSession;
 
 @end
