@@ -76,7 +76,7 @@
     _recorder.captureSessionPreset = [SCRecorderTools bestCaptureSessionPresetCompatibleWithAllDevices];
     _recorder.captureSessionPreset = AVCaptureSessionPresetHigh;
     _recorder.delegate = self;
-    _recorder.autoSetVideoOrientation = YES;
+    _recorder.videoOrientation = AVCaptureVideoOrientationPortrait;
     [_recorder switchCaptureDevices];
     
     UIView *previewView = self.previewView;
@@ -114,8 +114,9 @@
 {
     SCAssetExportSession *exportSession = [[SCAssetExportSession alloc] initWithAsset:_recordSession.assetRepresentingSegments];
     exportSession.videoConfiguration.preset = SCPresetHighestQuality;
-    exportSession.audioConfiguration.preset = SCPresetHighestQuality;
+    //exportSession.audioConfiguration.preset = SCPresetHighestQuality;
     exportSession.videoConfiguration.maxFrameRate = 35;
+    exportSession.videoConfiguration.keepInputAffineTransform = NO;
     exportSession.outputUrl = _recordSession.outputUrl;
     exportSession.outputFileType = AVFileTypeMPEG4;
     exportSession.delegate = self;
@@ -304,6 +305,7 @@
         [_recordSession removeLastSegment];
         [_recordSession addSegment:[SCRecordSessionSegment segmentWithURL:_exportSession.outputUrl info:nil]];
         videoPlayer.recordSession = _recordSession;
+        videoPlayer.path = _exportSession.outputUrl.path;
     }
 }
 

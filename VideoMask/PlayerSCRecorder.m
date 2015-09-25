@@ -56,17 +56,8 @@
 
 - (IBAction)saveToCameraRoll:(id)sender
 {
-    NSError *error = self.exportSession.error;
-    if (self.exportSession.cancelled) {
-        NSLog(@"Export was cancelled");
-    } else if (error == nil) {
-        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-        UISaveVideoAtPathToSavedPhotosAlbum(self.exportSession.outputUrl.path, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
-    } else {
-        if (!self.exportSession.cancelled) {
-            [[[UIAlertView alloc] initWithTitle:@"Failed to save" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        }
-    }
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    UISaveVideoAtPathToSavedPhotosAlbum(self.path, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
 }
 
 - (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo: (void *) contextInfo
