@@ -159,14 +159,14 @@
 - (IBAction)startRec:(id)sender
 {
     if (!rec.isSelected) {
-        NSLog(@"Start recording");
+        //NSLog(@"Start recording");
         [rec setSelected:YES];
         [self countdownTimer];
         
         [_recorder record];
         
     } else {
-        NSLog(@"Movie completed");
+        //NSLog(@"Movie completed");
         [rec setSelected:NO];
         [self stopTimer];
         
@@ -197,6 +197,7 @@
 {
     [timer invalidate];
     end.text = @"";
+    secondsLeft = 20;
 }
 
 - (IBAction)reverseCamera:(id)sender
@@ -299,6 +300,7 @@
 {
     if ([segue.destinationViewController isKindOfClass:[PlayerSCRecorder class]]) {
         PlayerSCRecorder *videoPlayer = segue.destinationViewController;
+        _recorder.session = nil;
         [_recordSession removeLastSegment];
         [_recordSession addSegment:[SCRecordSessionSegment segmentWithURL:_exportSession.outputUrl info:nil]];
         videoPlayer.recordSession = _recordSession;
