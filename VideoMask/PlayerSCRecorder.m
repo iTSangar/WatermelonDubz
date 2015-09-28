@@ -9,7 +9,7 @@
 #import "PlayerSCRecorder.h"
 #import "OverlaySCRecorder.h"
 
-@interface PlayerSCRecorder () <SCPlayerDelegate>
+@interface PlayerSCRecorder ()
 {
     AVURLAsset *_audioAsset;
 }
@@ -56,14 +56,12 @@
     [self.cinema.superview insertSubview:playerView aboveSubview:self.cinema];
     [self.cinema removeFromSuperview];
     _player.loopEnabled = YES;
-    
 }
 
 - (void)mixAudio
 {
     AVMutableComposition* mixComposition = [AVMutableComposition composition];
-    NSURL *audio_url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"pato" ofType:@"mp3"]];
-    _audioAsset = [[AVURLAsset alloc]initWithURL:audio_url options:nil];
+    _audioAsset = [[AVURLAsset alloc]initWithURL:self.audioUrl options:nil];
     CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, _recordSession.duration);
     
     AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
@@ -95,8 +93,6 @@
         [[[UIAlertView alloc] initWithTitle:@"Failed to save" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
 }
-
-#pragma mark - SCPlayerDelegate
 
 
 /*
