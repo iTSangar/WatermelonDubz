@@ -10,4 +10,6 @@
 
 @interface RecordingSCRecorder : UIViewController
 
+@property (strong, nonatomic) NSURL *musicURL;
+
 @end

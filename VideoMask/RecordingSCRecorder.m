@@ -79,19 +79,22 @@
     _recorder.captureSessionPreset = AVCaptureSessionPresetHigh;
     _recorder.delegate = self;
     _recorder.videoOrientation = AVCaptureVideoOrientationPortrait;
-    [_recorder switchCaptureDevices];
+    _recorder.keepMirroringOnWrite = YES;
+    _recorder.device = AVCaptureDevicePositionFront;
+    //_recorder.fastRecordMethodEnabled = YES; /* uncomment if performance issue */
+
     
     UIView *previewView = self.previewView;
     _recorder.previewView = previewView;
-    
     _recorder.initializeSessionLazily = NO;
     _recorder.videoConfiguration.sizeAsSquare = YES;
-    _recorder.audioConfiguration.enabled = NO;
+    _recorder.audioConfiguration.enabled = NO; // mute external sound
        
     // Set filter || Create filter feature -> https://github.com/rFlex/SCRecorder/issues/182
     //_recorder.videoConfiguration.filter = [SCFilter filterWithCIFilterName:@"CIPhotoEffectInstant"];
     
-    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"pato" ofType:@"mp3"]] error:nil];
+    // remove this in real case | URL is passed from other class
+    self.musicURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"20sec" ofType:@"mp3"]];
    
     NSError *error;
     if (![_recorder prepare:&error]) {
@@ -104,8 +107,31 @@
     if (_recorder.session == nil) {
         SCRecordSession *session = [SCRecordSession recordSession];
         session.fileType = AVFileTypeQuickTimeMovie;
-        
         _recorder.session = session;
+        
+        // set audio
+        _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:self.musicURL error:nil];
+    }
+}
+
+- (IBAction)startRec:(id)sender
+{
+    if (!rec.isSelected) {
+        NSLog(@"Start recording");
+        [rec setSelected:YES];
+        [self countdownTimer];
+        
+        [_audioPlayer play];
+        [_recorder record];
+    } else {
+        NSLog(@"Movie completed");
+        [rec setSelected:NO];
+        [self stopTimer];
+        
+        [_audioPlayer stop];
+        [_recorder pause:^{
+            [self saveAndShowSession:_recorder.session];
+        }];
     }
 }
 
@@ -115,8 +141,12 @@
     [self mergeVideo];
 }
 
-- (void)mixAudio
+- (void)mergeVideo
 {
+    // Show progress here
+    
+    
+    // Mix audio
     AVMutableComposition* mixComposition = [AVMutableComposition composition];
     NSURL *audio_url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"20sec" ofType:@"mp3"]];
     _audioAsset = [[AVURLAsset alloc]initWithURL:audio_url options:nil];
@@ -129,30 +159,11 @@
     
     AVMutableCompositionTrack *a_compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
     [a_compositionVideoTrack insertTimeRange:video_timeRange ofTrack:[[_recordSession.assetRepresentingSegments tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
-    
-    //[_player setItemByAsset:mixComposition];
-    //[_player play];
-}
-
-- (void)mergeVideo
-{
-    AVMutableComposition* mixComposition = [AVMutableComposition composition];
-    NSURL *audio_url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"pato" ofType:@"mp3"]];
-    _audioAsset = [[AVURLAsset alloc]initWithURL:audio_url options:nil];
-    CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, _recordSession.duration);
-    
-    AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[_audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:kCMTimeZero error:nil];
-    
-    CMTimeRange video_timeRange = CMTimeRangeMake(kCMTimeZero, _recordSession.duration);
-    
-    AVMutableCompositionTrack *a_compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-    [a_compositionVideoTrack insertTimeRange:video_timeRange ofTrack:[[_recordSession.assetRepresentingSegments tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
 
     
+    // Export config
     SCAssetExportSession *exportSession = [[SCAssetExportSession alloc] initWithAsset:mixComposition];
     exportSession.videoConfiguration.preset = SCPresetHighestQuality;
-    //exportSession.audioConfiguration.preset = SCPresetHighestQuality;
     exportSession.videoConfiguration.maxFrameRate = 35;
     exportSession.videoConfiguration.keepInputAffineTransform = NO;
     exportSession.outputUrl = _recordSession.outputUrl;
@@ -160,16 +171,18 @@
     exportSession.delegate = self;
     _exportSession = exportSession;
     
-    // Show progress here
     
-    // Overlay
+    // Mask
     OverlaySCRecorder *overlay = [OverlaySCRecorder new];
-    overlay.date = _recorder.session.date;
+    overlay.date = _recorder.session.date; // property example
     exportSession.videoConfiguration.overlay = overlay;
+    
     NSLog(@"Starting exporting");
     
+    
+    CFTimeInterval time = CACurrentMediaTime(); // time to complete process
+   
     // Merge
-    CFTimeInterval time = CACurrentMediaTime();
     __weak typeof(self) wSelf = self;
     [exportSession exportAsynchronouslyWithCompletionHandler:^{
         __strong typeof(self) strongSelf = wSelf;
@@ -186,6 +199,7 @@
         if (exportSession.cancelled) {
             NSLog(@"Export was cancelled");
         } else if (error == nil) {
+            // success
             [self performSegueWithIdentifier:@"Preview" sender:self];
         } else {
             if (!exportSession.cancelled) {
@@ -193,27 +207,6 @@
             }
         }
     }];
-}
-
-- (IBAction)startRec:(id)sender
-{
-    if (!rec.isSelected) {
-        //NSLog(@"Start recording");
-        [rec setSelected:YES];
-        [self countdownTimer];
-        
-        [_audioPlayer play];
-        [_recorder record];
-    } else {
-        //NSLog(@"Movie completed");
-        [rec setSelected:NO];
-        [self stopTimer];
-        
-        [_audioPlayer stop];
-        [_recorder pause:^{
-            [self saveAndShowSession:_recorder.session];
-        }];
-    }
 }
 
 - (void)countdownTimer
@@ -242,7 +235,9 @@
 
 - (IBAction)reverseCamera:(id)sender
 {
-    [_recorder switchCaptureDevices];
+    if (![_recorder isRecording]) {
+        [_recorder switchCaptureDevices];
+    }
 }
 
 - (IBAction)switchFlash:(id)sender
@@ -325,11 +320,7 @@
         float progress = assetExportSession.progress;
         
         NSLog(@"%f", progress);
-        
-        // update progress
-        //CGRect frame =  self.progressView.frame;
-        //frame.size.width = self.progressView.superview.frame.size.width * progress;
-        //self.progressView.frame = frame;
+        // update progress here
     });
 }
 
@@ -339,12 +330,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.destinationViewController isKindOfClass:[PlayerSCRecorder class]]) {
-        PlayerSCRecorder *videoPlayer = segue.destinationViewController;
         _recorder.session = nil;
         [_recordSession removeLastSegment];
         [_recordSession addSegment:[SCRecordSessionSegment segmentWithURL:_exportSession.outputUrl info:nil]];
+        
+        PlayerSCRecorder *videoPlayer = segue.destinationViewController;
         videoPlayer.recordSession = _recordSession;
         videoPlayer.path = _exportSession.outputUrl.path;
+        videoPlayer.audioUrl = self.musicURL;
     }
 }
 
