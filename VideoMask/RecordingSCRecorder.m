@@ -16,6 +16,8 @@
     SCRecorder *_recorder;
     SCRecordSession *_recordSession;
     SCAssetExportSession *_exportSession;
+    AVURLAsset *_audioAsset;
+    AVAudioPlayer *_audioPlayer;
     
     IBOutlet UILabel *end;
     IBOutlet UIButton *rec;
@@ -84,9 +86,12 @@
     
     _recorder.initializeSessionLazily = NO;
     _recorder.videoConfiguration.sizeAsSquare = YES;
-    
+    _recorder.audioConfiguration.enabled = NO;
+       
     // Set filter || Create filter feature -> https://github.com/rFlex/SCRecorder/issues/182
     //_recorder.videoConfiguration.filter = [SCFilter filterWithCIFilterName:@"CIPhotoEffectInstant"];
+    
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"pato" ofType:@"mp3"]] error:nil];
    
     NSError *error;
     if (![_recorder prepare:&error]) {
@@ -110,9 +115,42 @@
     [self mergeVideo];
 }
 
+- (void)mixAudio
+{
+    AVMutableComposition* mixComposition = [AVMutableComposition composition];
+    NSURL *audio_url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"20sec" ofType:@"mp3"]];
+    _audioAsset = [[AVURLAsset alloc]initWithURL:audio_url options:nil];
+    CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, _recordSession.duration);
+    
+    AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[_audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+    
+    CMTimeRange video_timeRange = CMTimeRangeMake(kCMTimeZero, _recordSession.duration);
+    
+    AVMutableCompositionTrack *a_compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    [a_compositionVideoTrack insertTimeRange:video_timeRange ofTrack:[[_recordSession.assetRepresentingSegments tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+    
+    //[_player setItemByAsset:mixComposition];
+    //[_player play];
+}
+
 - (void)mergeVideo
 {
-    SCAssetExportSession *exportSession = [[SCAssetExportSession alloc] initWithAsset:_recordSession.assetRepresentingSegments];
+    AVMutableComposition* mixComposition = [AVMutableComposition composition];
+    NSURL *audio_url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"pato" ofType:@"mp3"]];
+    _audioAsset = [[AVURLAsset alloc]initWithURL:audio_url options:nil];
+    CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, _recordSession.duration);
+    
+    AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[_audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+    
+    CMTimeRange video_timeRange = CMTimeRangeMake(kCMTimeZero, _recordSession.duration);
+    
+    AVMutableCompositionTrack *a_compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    [a_compositionVideoTrack insertTimeRange:video_timeRange ofTrack:[[_recordSession.assetRepresentingSegments tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+
+    
+    SCAssetExportSession *exportSession = [[SCAssetExportSession alloc] initWithAsset:mixComposition];
     exportSession.videoConfiguration.preset = SCPresetHighestQuality;
     //exportSession.audioConfiguration.preset = SCPresetHighestQuality;
     exportSession.videoConfiguration.maxFrameRate = 35;
@@ -164,13 +202,14 @@
         [rec setSelected:YES];
         [self countdownTimer];
         
+        [_audioPlayer play];
         [_recorder record];
-        
     } else {
         //NSLog(@"Movie completed");
         [rec setSelected:NO];
         [self stopTimer];
         
+        [_audioPlayer stop];
         [_recorder pause:^{
             [self saveAndShowSession:_recorder.session];
         }];

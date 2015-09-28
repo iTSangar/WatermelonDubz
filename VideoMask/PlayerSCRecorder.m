@@ -10,6 +10,9 @@
 #import "OverlaySCRecorder.h"
 
 @interface PlayerSCRecorder () <SCPlayerDelegate>
+{
+    AVURLAsset *_audioAsset;
+}
 
 @property (strong, nonatomic) SCPlayer *player;
 @property (weak, nonatomic) IBOutlet UIView *cinema;
@@ -32,8 +35,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [_player setItemByAsset:_recordSession.assetRepresentingSegments];
-    [_player play];
+    //[_player setItemByAsset:_recordSession.assetRepresentingSegments];
+    //[_player play];
+    [self mixAudio];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -52,7 +56,28 @@
     [self.cinema.superview insertSubview:playerView aboveSubview:self.cinema];
     [self.cinema removeFromSuperview];
     _player.loopEnabled = YES;
+    
 }
+
+- (void)mixAudio
+{
+    AVMutableComposition* mixComposition = [AVMutableComposition composition];
+    NSURL *audio_url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"pato" ofType:@"mp3"]];
+    _audioAsset = [[AVURLAsset alloc]initWithURL:audio_url options:nil];
+    CMTimeRange audio_timeRange = CMTimeRangeMake(kCMTimeZero, _recordSession.duration);
+    
+    AVMutableCompositionTrack *b_compositionAudioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    [b_compositionAudioTrack insertTimeRange:audio_timeRange ofTrack:[[_audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+    
+    CMTimeRange video_timeRange = CMTimeRangeMake(kCMTimeZero, _recordSession.duration);
+    
+    AVMutableCompositionTrack *a_compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    [a_compositionVideoTrack insertTimeRange:video_timeRange ofTrack:[[_recordSession.assetRepresentingSegments tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+    
+    [_player setItemByAsset:mixComposition];
+    [_player play];
+}
+
 
 - (IBAction)saveToCameraRoll:(id)sender
 {
