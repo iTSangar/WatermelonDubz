@@ -68,7 +68,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="NM9-Un-fas" kind="show" id="5f7-3Y-MZ7"/>
+                                    <segue destination="UUz-6p-Hmc" kind="show" id="tep-4m-T7r"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -91,6 +91,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="736" y="-291"/>
+        </scene>
+        <!--Trim View Controller-->
+        <scene sceneID="nOZ-tq-Qgq">
+            <objects>
+                <viewController id="UUz-6p-Hmc" customClass="TrimViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c7Y-Ze-fJc"/>
+                        <viewControllerLayoutGuide type="bottom" id="u2W-Dz-INj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bje-1I-etZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSG-Tu-KBZ">
+                                <rect key="frame" x="26" y="438" width="32" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="gCy-yZ-Du6"/>
+                                    <constraint firstAttribute="width" constant="32" id="hyc-vW-DDB"/>
+                                </constraints>
+                                <state key="normal" image="play"/>
+                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="egf-ON-h8Q" customClass="TTRangeSlider">
+                                <rect key="frame" x="91" y="421" width="489" height="75"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.78738981490000004" green="0.2464441359" blue="0.27221894260000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="Lau-H0-tXC"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="disableRange" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="QcI-sk-w8l">
+                                <rect key="frame" x="138" y="64" width="325" height="325"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QcI-sk-w8l" secondAttribute="height" multiplier="1:1" id="hMu-2L-lSa"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPg-tM-6tV">
+                                <rect key="frame" x="400" y="535" width="180" height="45"/>
+                                <color key="backgroundColor" red="0.15101002159999999" green="0.56891876460000002" blue="0.43715286250000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="SbW-wp-h6L"/>
+                                    <constraint firstAttribute="width" constant="180" id="o5o-HH-giz"/>
+                                </constraints>
+                                <state key="normal" title="Trim and Let's Dub">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="NM9-Un-fas" kind="show" id="7nc-bZ-fk5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="egf-ON-h8Q" firstAttribute="top" secondItem="QcI-sk-w8l" secondAttribute="bottom" constant="32" id="GOC-nL-6SC"/>
+                            <constraint firstItem="egf-ON-h8Q" firstAttribute="leading" secondItem="gSG-Tu-KBZ" secondAttribute="trailing" constant="33" id="ORJ-zw-grG"/>
+                            <constraint firstItem="QPg-tM-6tV" firstAttribute="trailing" secondItem="egf-ON-h8Q" secondAttribute="trailing" id="V08-Aj-2cf"/>
+                            <constraint firstAttribute="trailing" secondItem="QPg-tM-6tV" secondAttribute="trailing" constant="20" id="f7g-zD-Lmi"/>
+                            <constraint firstItem="gSG-Tu-KBZ" firstAttribute="leading" secondItem="bje-1I-etZ" secondAttribute="leading" constant="26" id="h2l-0v-Lea"/>
+                            <constraint firstItem="QcI-sk-w8l" firstAttribute="centerX" secondItem="bje-1I-etZ" secondAttribute="centerX" id="hpG-Y9-yUj"/>
+                            <constraint firstItem="QcI-sk-w8l" firstAttribute="leading" secondItem="bje-1I-etZ" secondAttribute="leading" id="ohG-1z-gyZ"/>
+                            <constraint firstItem="u2W-Dz-INj" firstAttribute="top" secondItem="QPg-tM-6tV" secondAttribute="bottom" constant="20" id="pwY-58-crV"/>
+                            <constraint firstAttribute="trailing" secondItem="QcI-sk-w8l" secondAttribute="trailing" id="s9r-lr-yAN"/>
+                            <constraint firstItem="gSG-Tu-KBZ" firstAttribute="centerY" secondItem="egf-ON-h8Q" secondAttribute="centerY" id="sRt-5t-tf4"/>
+                            <constraint firstItem="QcI-sk-w8l" firstAttribute="top" secondItem="c7Y-Ze-fJc" secondAttribute="bottom" id="zCc-sH-OBt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="rangeSlider" destination="egf-ON-h8Q" id="mmF-MI-cfU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CKr-pg-GMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="357" y="556"/>
         </scene>
         <!--RecordingSC Recorder-->
         <scene sceneID="xKa-Oe-W1e">
@@ -203,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CpH-dC-gcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="883" y="625"/>
+            <point key="canvasLocation" x="1175" y="779"/>
         </scene>
         <!--Preview-->
         <scene sceneID="8yo-2l-QkW">
@@ -246,7 +321,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qqi-s1-F3I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1739" y="714"/>
+            <point key="canvasLocation" x="2037" y="1020"/>
         </scene>
         <!--RecordingGPU Image-->
         <scene sceneID="0E9-ze-wVO">
@@ -370,7 +445,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cover" width="250" height="250"/>
         <image name="flash" width="16" height="24"/>
+        <image name="play" width="12" height="14"/>
         <image name="rotate" width="29" height="22"/>
     </resources>
 </document>
