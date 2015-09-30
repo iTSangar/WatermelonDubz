@@ -12,13 +12,14 @@
 		7661AFBE1BB491DF00B6E18C /* PlayerSCRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661AFBD1BB491DF00B6E18C /* PlayerSCRecorder.m */; settings = {ASSET_TAGS = (); }; };
 		7661AFC11BB57B6700B6E18C /* OverlaySCRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661AFC01BB57B6700B6E18C /* OverlaySCRecorder.m */; settings = {ASSET_TAGS = (); }; };
 		7661AFC31BB97ECB00B6E18C /* pato.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7661AFC21BB97ECB00B6E18C /* pato.mp3 */; settings = {ASSET_TAGS = (); }; };
+		7661AFCD1BBB282900B6E18C /* full.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7661AFCC1BBB282900B6E18C /* full.mp3 */; settings = {ASSET_TAGS = (); }; };
+		7661AFD01BBB3A3D00B6E18C /* TrimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7661AFCF1BBB3A3D00B6E18C /* TrimViewController.m */; settings = {ASSET_TAGS = (); }; };
 		76D210631BB1E35A00DDE9AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D210621BB1E35A00DDE9AB /* main.m */; };
 		76D210661BB1E35A00DDE9AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D210651BB1E35A00DDE9AB /* AppDelegate.m */; };
 		76D210691BB1E35A00DDE9AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D210681BB1E35A00DDE9AB /* ViewController.m */; };
 		76D2106C1BB1E35A00DDE9AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76D2106A1BB1E35A00DDE9AB /* Main.storyboard */; };
 		76D2106E1BB1E35A00DDE9AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76D2106D1BB1E35A00DDE9AB /* Assets.xcassets */; };
 		76D210711BB1E35A00DDE9AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76D2106F1BB1E35A00DDE9AB /* LaunchScreen.storyboard */; };
-		76D39C7D1BB31DD100174104 /* trap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 76D39C7C1BB31DD100174104 /* trap.mp3 */; settings = {ASSET_TAGS = (); }; };
 		76D39C801BB31EE300174104 /* RecordingGPUImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D39C7F1BB31EE300174104 /* RecordingGPUImage.m */; settings = {ASSET_TAGS = (); }; };
 		F53935CFD94CBC0A0A9077DE /* Pods_VideoMask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3ACB028BC5510809BD00914 /* Pods_VideoMask.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -34,6 +35,9 @@
 		7661AFBF1BB57B6700B6E18C /* OverlaySCRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlaySCRecorder.h; sourceTree = "<group>"; };
 		7661AFC01BB57B6700B6E18C /* OverlaySCRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlaySCRecorder.m; sourceTree = "<group>"; };
 		7661AFC21BB97ECB00B6E18C /* pato.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pato.mp3; sourceTree = "<group>"; };
+		7661AFCC1BBB282900B6E18C /* full.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = full.mp3; sourceTree = "<group>"; };
+		7661AFCE1BBB3A3D00B6E18C /* TrimViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrimViewController.h; sourceTree = "<group>"; };
+		7661AFCF1BBB3A3D00B6E18C /* TrimViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrimViewController.m; sourceTree = "<group>"; };
 		76D2105E1BB1E35A00DDE9AB /* VideoMask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoMask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76D210621BB1E35A00DDE9AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76D210641BB1E35A00DDE9AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -44,7 +48,6 @@
 		76D2106D1BB1E35A00DDE9AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76D210701BB1E35A00DDE9AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76D210721BB1E35A00DDE9AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		76D39C7C1BB31DD100174104 /* trap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trap.mp3; sourceTree = "<group>"; };
 		76D39C7E1BB31EE200174104 /* RecordingGPUImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingGPUImage.h; sourceTree = "<group>"; };
 		76D39C7F1BB31EE300174104 /* RecordingGPUImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingGPUImage.m; sourceTree = "<group>"; };
 		B3ACB028BC5510809BD00914 /* Pods_VideoMask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoMask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +100,8 @@
 				76D210681BB1E35A00DDE9AB /* ViewController.m */,
 				76D39C7E1BB31EE200174104 /* RecordingGPUImage.h */,
 				76D39C7F1BB31EE300174104 /* RecordingGPUImage.m */,
+				7661AFCE1BBB3A3D00B6E18C /* TrimViewController.h */,
+				7661AFCF1BBB3A3D00B6E18C /* TrimViewController.m */,
 				7661AFB71BB46F0B00B6E18C /* RecordingSCRecorder.h */,
 				7661AFB81BB46F0B00B6E18C /* RecordingSCRecorder.m */,
 				7661AFBC1BB491DF00B6E18C /* PlayerSCRecorder.h */,
@@ -115,9 +120,9 @@
 		76D210611BB1E35A00DDE9AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7661AFCC1BBB282900B6E18C /* full.mp3 */,
 				7661AFC21BB97ECB00B6E18C /* pato.mp3 */,
 				7661AFBA1BB48B1300B6E18C /* 20sec.mp3 */,
-				76D39C7C1BB31DD100174104 /* trap.mp3 */,
 				76D210621BB1E35A00DDE9AB /* main.m */,
 			);
 			name = "Supporting Files";
@@ -195,8 +200,8 @@
 				7661AFBB1BB48B1300B6E18C /* 20sec.mp3 in Resources */,
 				76D210711BB1E35A00DDE9AB /* LaunchScreen.storyboard in Resources */,
 				7661AFC31BB97ECB00B6E18C /* pato.mp3 in Resources */,
-				76D39C7D1BB31DD100174104 /* trap.mp3 in Resources */,
 				76D2106E1BB1E35A00DDE9AB /* Assets.xcassets in Resources */,
+				7661AFCD1BBB282900B6E18C /* full.mp3 in Resources */,
 				76D2106C1BB1E35A00DDE9AB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +263,7 @@
 			files = (
 				76D39C801BB31EE300174104 /* RecordingGPUImage.m in Sources */,
 				7661AFC11BB57B6700B6E18C /* OverlaySCRecorder.m in Sources */,
+				7661AFD01BBB3A3D00B6E18C /* TrimViewController.m in Sources */,
 				76D210691BB1E35A00DDE9AB /* ViewController.m in Sources */,
 				76D210661BB1E35A00DDE9AB /* AppDelegate.m in Sources */,
 				76D210631BB1E35A00DDE9AB /* main.m in Sources */,

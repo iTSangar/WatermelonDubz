@@ -11,6 +11,8 @@
 #import "PlayerSCRecorder.h"
 #import "OverlaySCRecorder.h"
 
+const int RANGE_TIME = 20;
+
 @interface RecordingSCRecorder () <SCRecorderDelegate, SCAssetExportSessionDelegate>
 {
     SCRecorder *_recorder;
@@ -37,7 +39,7 @@
     [super viewDidLoad];
     
     recording = NO;
-    secondsLeft = 20;
+    secondsLeft = RANGE_TIME;
     [self setupCamera];
 }
 
@@ -230,7 +232,7 @@
 {
     [timer invalidate];
     end.text = @"";
-    secondsLeft = 20;
+    secondsLeft = RANGE_TIME;
 }
 
 - (IBAction)reverseCamera:(id)sender
