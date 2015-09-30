@@ -25,7 +25,7 @@ const float TEXT_HEIGHT = 14;
 
 @end
 
-static const CGFloat kLabelsFontSize = 12.0f;
+static const CGFloat kLabelsFontSize = 14.0f;
 
 @implementation TTRangeSlider
 

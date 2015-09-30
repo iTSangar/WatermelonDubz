@@ -105,15 +105,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSG-Tu-KBZ">
-                                <rect key="frame" x="26" y="438" width="32" height="42"/>
+                                <rect key="frame" x="20" y="433" width="42" height="52"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="gCy-yZ-Du6"/>
-                                    <constraint firstAttribute="width" constant="32" id="hyc-vW-DDB"/>
+                                    <constraint firstAttribute="height" constant="52" id="gCy-yZ-Du6"/>
+                                    <constraint firstAttribute="width" constant="42" id="hyc-vW-DDB"/>
                                 </constraints>
                                 <state key="normal" image="play"/>
+                                <state key="selected" image="stop"/>
+                                <connections>
+                                    <action selector="playPause:" destination="UUz-6p-Hmc" eventType="touchUpInside" id="Jsb-7K-5h1"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="egf-ON-h8Q" customClass="TTRangeSlider">
-                                <rect key="frame" x="91" y="421" width="489" height="75"/>
+                                <rect key="frame" x="70" y="421" width="510" height="75"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.78738981490000004" green="0.2464441359" blue="0.27221894260000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -137,7 +141,7 @@
                                     <constraint firstAttribute="width" constant="180" id="o5o-HH-giz"/>
                                 </constraints>
                                 <state key="normal" title="Trim and Let's Dub">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.11181893199682236" green="0.1118365004658699" blue="0.1118125319480896" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="NM9-Un-fas" kind="show" id="7nc-bZ-fk5"/>
@@ -147,10 +151,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="egf-ON-h8Q" firstAttribute="top" secondItem="QcI-sk-w8l" secondAttribute="bottom" constant="32" id="GOC-nL-6SC"/>
-                            <constraint firstItem="egf-ON-h8Q" firstAttribute="leading" secondItem="gSG-Tu-KBZ" secondAttribute="trailing" constant="33" id="ORJ-zw-grG"/>
+                            <constraint firstItem="egf-ON-h8Q" firstAttribute="leading" secondItem="gSG-Tu-KBZ" secondAttribute="trailing" constant="8" id="ORJ-zw-grG"/>
                             <constraint firstItem="QPg-tM-6tV" firstAttribute="trailing" secondItem="egf-ON-h8Q" secondAttribute="trailing" id="V08-Aj-2cf"/>
                             <constraint firstAttribute="trailing" secondItem="QPg-tM-6tV" secondAttribute="trailing" constant="20" id="f7g-zD-Lmi"/>
-                            <constraint firstItem="gSG-Tu-KBZ" firstAttribute="leading" secondItem="bje-1I-etZ" secondAttribute="leading" constant="26" id="h2l-0v-Lea"/>
+                            <constraint firstItem="gSG-Tu-KBZ" firstAttribute="leading" secondItem="bje-1I-etZ" secondAttribute="leading" constant="20" id="h2l-0v-Lea"/>
                             <constraint firstItem="QcI-sk-w8l" firstAttribute="centerX" secondItem="bje-1I-etZ" secondAttribute="centerX" id="hpG-Y9-yUj"/>
                             <constraint firstItem="QcI-sk-w8l" firstAttribute="leading" secondItem="bje-1I-etZ" secondAttribute="leading" id="ohG-1z-gyZ"/>
                             <constraint firstItem="u2W-Dz-INj" firstAttribute="top" secondItem="QPg-tM-6tV" secondAttribute="bottom" constant="20" id="pwY-58-crV"/>
@@ -160,6 +164,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="play" destination="gSG-Tu-KBZ" id="5ed-Zm-JLi"/>
                         <outlet property="rangeSlider" destination="egf-ON-h8Q" id="mmF-MI-cfU"/>
                     </connections>
                 </viewController>
@@ -449,5 +454,6 @@
         <image name="flash" width="16" height="24"/>
         <image name="play" width="12" height="14"/>
         <image name="rotate" width="29" height="22"/>
+        <image name="stop" width="12" height="12"/>
     </resources>
 </document>
