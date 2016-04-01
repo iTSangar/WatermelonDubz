@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="R3u-vn-tah">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="R3u-vn-tah">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -49,7 +49,7 @@
                                     <constraint firstAttribute="height" constant="76" id="v6i-tv-mQD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="GPUImage Dubz">
+                                <state key="normal" title="GPUImage Dubz (TODO)">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -71,11 +71,28 @@
                                     <segue destination="UUz-6p-Hmc" kind="show" id="tep-4m-T7r"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ci-Fo-EyG">
+                                <rect key="frame" x="195" y="465" width="210" height="77"/>
+                                <color key="backgroundColor" red="0.15101002159999999" green="0.56891876460000002" blue="0.43715286250000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="4dX-I1-0R9"/>
+                                    <constraint firstAttribute="height" constant="77" id="lqm-YM-tfp"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="77" id="qfw-W6-sai"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="SCRecorder + Snap">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="7MR-OL-RPs" kind="show" id="g8r-cy-4Ky"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.78738981485366821" green="0.24644413590431213" blue="0.27221894264221191" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="DcH-TZ-Oit" firstAttribute="trailing" secondItem="meb-6W-z0f" secondAttribute="trailing" id="27l-je-faR"/>
                             <constraint firstItem="DcH-TZ-Oit" firstAttribute="top" secondItem="meb-6W-z0f" secondAttribute="bottom" constant="8" id="32C-sH-tiq"/>
+                            <constraint firstItem="3Ci-Fo-EyG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BLx-rX-sQ4"/>
                             <constraint firstItem="DcH-TZ-Oit" firstAttribute="leading" secondItem="meb-6W-z0f" secondAttribute="leading" id="TiJ-w0-oOe"/>
                             <constraint firstItem="bxx-qR-pv8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UHR-HC-tWO"/>
                             <constraint firstItem="iKV-6R-W1i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WnT-b6-RNL"/>
@@ -84,6 +101,7 @@
                             <constraint firstItem="bxx-qR-pv8" firstAttribute="top" secondItem="iKV-6R-W1i" secondAttribute="bottom" constant="23" id="lge-US-d00"/>
                             <constraint firstItem="iKV-6R-W1i" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mjz-2D-hd3"/>
                             <constraint firstItem="meb-6W-z0f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="slk-x8-SUu"/>
+                            <constraint firstItem="3Ci-Fo-EyG" firstAttribute="top" secondItem="bxx-qR-pv8" secondAttribute="bottom" constant="27" id="vO1-5z-8LP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Watermelon Dubz" id="Hdr-0M-9EX"/>
@@ -328,6 +346,203 @@
             </objects>
             <point key="canvasLocation" x="2037" y="1020"/>
         </scene>
+        <!--Camera Snap-->
+        <scene sceneID="nSY-lB-S2N">
+            <objects>
+                <viewController id="7MR-OL-RPs" customClass="CameraSnap" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W4x-5S-e3E"/>
+                        <viewControllerLayoutGuide type="bottom" id="n0v-xd-up1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kfz-Iy-HQ8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OU5-5A-tlD">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUY-y0-N7V" userLabel="Rotate">
+                                <rect key="frame" x="359" y="20" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="HQK-6o-RT8"/>
+                                    <constraint firstAttribute="width" constant="40" id="YVg-ht-N1u"/>
+                                </constraints>
+                                <state key="normal" image="snap_rotate"/>
+                                <state key="highlighted" image="snap_rotate_pressed"/>
+                                <connections>
+                                    <action selector="reverseCamera:" destination="7MR-OL-RPs" eventType="touchUpInside" id="2rq-yg-9Bw"/>
+                                </connections>
+                            </button>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7T8-mB-L7n">
+                                <rect key="frame" x="157" y="616" width="100" height="100"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bEx-FM-JjQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRQ-8u-Rcy" customClass="SDRecordButton">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                                    <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
+                                                    <color key="value" red="0.85262101889999997" green="0.42218321559999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hRQ-8u-Rcy" firstAttribute="leading" secondItem="bEx-FM-JjQ" secondAttribute="leading" id="E7S-j8-T8v"/>
+                                        <constraint firstAttribute="trailing" secondItem="hRQ-8u-Rcy" secondAttribute="trailing" id="QHt-B7-xjT"/>
+                                        <constraint firstItem="hRQ-8u-Rcy" firstAttribute="top" secondItem="bEx-FM-JjQ" secondAttribute="top" id="VP7-Hg-IRD"/>
+                                        <constraint firstAttribute="bottom" secondItem="hRQ-8u-Rcy" secondAttribute="bottom" id="tg6-ud-QMf"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="cmo-gJ-1fR"/>
+                                    <constraint firstAttribute="height" constant="100" id="tcs-R2-37c"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C30-TY-Mxc">
+                                <rect key="frame" x="15" y="20" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Q4A-1l-7bO"/>
+                                    <constraint firstAttribute="width" constant="40" id="cTz-XK-3D6"/>
+                                </constraints>
+                                <state key="normal" image="snap_flash_off"/>
+                                <state key="selected" image="snap_flash_on"/>
+                                <connections>
+                                    <action selector="switchFlash:" destination="7MR-OL-RPs" eventType="touchUpInside" id="6JU-vb-HEx"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoA-5d-Ecf" userLabel="Hidden">
+                                <rect key="frame" x="184" y="353" width="46" height="30"/>
+                                <connections>
+                                    <segue destination="PbE-vv-10P" kind="show" identifier="previewSnap" id="z5S-Si-6QX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFC-iv-ozS" userLabel="Logo">
+                                <rect key="frame" x="177" y="10" width="60" height="60"/>
+                                <state key="normal" image="snap_logo_color"/>
+                                <connections>
+                                    <action selector="closeCamera:" destination="7MR-OL-RPs" eventType="touchUpInside" id="gQm-3e-7II"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OU5-5A-tlD" firstAttribute="leading" secondItem="kfz-Iy-HQ8" secondAttribute="leading" id="2nf-zM-AQg"/>
+                            <constraint firstAttribute="trailing" secondItem="OU5-5A-tlD" secondAttribute="trailing" id="4Zv-nS-dRh"/>
+                            <constraint firstItem="7T8-mB-L7n" firstAttribute="centerX" secondItem="kfz-Iy-HQ8" secondAttribute="centerX" id="82S-eN-B1l"/>
+                            <constraint firstItem="dFC-iv-ozS" firstAttribute="centerY" secondItem="gUY-y0-N7V" secondAttribute="centerY" id="8p1-wC-EgI"/>
+                            <constraint firstItem="C30-TY-Mxc" firstAttribute="leading" secondItem="kfz-Iy-HQ8" secondAttribute="leading" constant="15" id="ANI-vI-S2Z"/>
+                            <constraint firstItem="n0v-xd-up1" firstAttribute="top" secondItem="OU5-5A-tlD" secondAttribute="bottom" id="DFx-cc-PK7"/>
+                            <constraint firstItem="gUY-y0-N7V" firstAttribute="top" secondItem="W4x-5S-e3E" secondAttribute="bottom" constant="20" id="HcQ-vz-2jK"/>
+                            <constraint firstItem="dFC-iv-ozS" firstAttribute="centerX" secondItem="kfz-Iy-HQ8" secondAttribute="centerX" id="PIc-Is-4dj"/>
+                            <constraint firstItem="C30-TY-Mxc" firstAttribute="top" secondItem="W4x-5S-e3E" secondAttribute="bottom" constant="20" id="aYn-MN-wju"/>
+                            <constraint firstItem="OU5-5A-tlD" firstAttribute="top" secondItem="kfz-Iy-HQ8" secondAttribute="top" id="asZ-nn-LdT"/>
+                            <constraint firstAttribute="trailing" secondItem="gUY-y0-N7V" secondAttribute="trailing" constant="15" id="jg3-80-DDr"/>
+                            <constraint firstItem="n0v-xd-up1" firstAttribute="top" secondItem="7T8-mB-L7n" secondAttribute="bottom" constant="20" id="tl8-h0-rIO"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="blurView" destination="7T8-mB-L7n" id="BUm-oi-piY"/>
+                        <outlet property="cameraPreviewView" destination="OU5-5A-tlD" id="289-dP-TeS"/>
+                        <outlet property="flash" destination="C30-TY-Mxc" id="AsN-9a-KD0"/>
+                        <outlet property="recordButton" destination="hRQ-8u-Rcy" id="eal-PO-tVW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9lP-Ab-VCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1647" y="-714"/>
+        </scene>
+        <!--Snap Preview-->
+        <scene sceneID="KuL-DP-edE">
+            <objects>
+                <viewController id="PbE-vv-10P" customClass="SnapPreview" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a40-ug-v7x"/>
+                        <viewControllerLayoutGuide type="bottom" id="tay-IU-aYV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wu3-tR-VUD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbe-f6-6Iw" customClass="SCVideoPlayerView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdJ-Au-75F" userLabel="Close">
+                                <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                <state key="normal" image="snap_close"/>
+                                <connections>
+                                    <action selector="closeCamera:" destination="PbE-vv-10P" eventType="touchUpInside" id="eUs-UL-qfh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOc-Wq-1qi" userLabel="Download">
+                                <rect key="frame" x="359" y="681" width="40" height="40"/>
+                                <state key="normal" image="snap_download"/>
+                                <connections>
+                                    <action selector="saveToCameraRoll:" destination="PbE-vv-10P" eventType="touchUpInside" id="Ib8-W8-Wm6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUb-Fb-keB" userLabel="Instagram">
+                                <rect key="frame" x="135" y="681" width="40" height="40"/>
+                                <state key="normal" image="snap_instagram"/>
+                                <connections>
+                                    <action selector="shareInstagram:" destination="PbE-vv-10P" eventType="touchUpInside" id="Zhi-9i-DpV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMO-Vw-Jk7" userLabel="Facebook">
+                                <rect key="frame" x="80" y="681" width="40" height="40"/>
+                                <state key="normal" image="snap_facebook"/>
+                                <connections>
+                                    <action selector="shareFacebook:" destination="PbE-vv-10P" eventType="touchUpInside" id="oz5-oD-6zX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEn-nX-RJS" userLabel="Twitter">
+                                <rect key="frame" x="25" y="681" width="40" height="40"/>
+                                <state key="normal" image="snap_twitter"/>
+                                <connections>
+                                    <action selector="shareTwitter:" destination="PbE-vv-10P" eventType="touchUpInside" id="PSO-ld-WcR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tay-IU-aYV" firstAttribute="top" secondItem="BUb-Fb-keB" secondAttribute="bottom" constant="15" id="6bO-yH-pyD"/>
+                            <constraint firstItem="gbe-f6-6Iw" firstAttribute="top" secondItem="wu3-tR-VUD" secondAttribute="top" id="Hj4-SO-My0"/>
+                            <constraint firstItem="gbe-f6-6Iw" firstAttribute="leading" secondItem="wu3-tR-VUD" secondAttribute="leading" id="PbX-ax-wcP"/>
+                            <constraint firstItem="tay-IU-aYV" firstAttribute="top" secondItem="gbe-f6-6Iw" secondAttribute="bottom" id="Q0C-2M-u7R"/>
+                            <constraint firstItem="rMO-Vw-Jk7" firstAttribute="leading" secondItem="rEn-nX-RJS" secondAttribute="trailing" constant="15" id="TXl-49-GEV"/>
+                            <constraint firstItem="mdJ-Au-75F" firstAttribute="leading" secondItem="wu3-tR-VUD" secondAttribute="leading" constant="10" id="UeS-qk-EH8"/>
+                            <constraint firstItem="EOc-Wq-1qi" firstAttribute="centerY" secondItem="BUb-Fb-keB" secondAttribute="centerY" id="co5-hJ-zYX"/>
+                            <constraint firstAttribute="trailing" secondItem="gbe-f6-6Iw" secondAttribute="trailing" id="dOq-Jb-gGr"/>
+                            <constraint firstItem="tay-IU-aYV" firstAttribute="top" secondItem="rEn-nX-RJS" secondAttribute="bottom" constant="15" id="g3U-K6-w0c"/>
+                            <constraint firstItem="mdJ-Au-75F" firstAttribute="top" secondItem="a40-ug-v7x" secondAttribute="bottom" constant="10" id="ggX-Mn-jxx"/>
+                            <constraint firstItem="BUb-Fb-keB" firstAttribute="leading" secondItem="rMO-Vw-Jk7" secondAttribute="trailing" constant="15" id="hfL-Rz-Mxx"/>
+                            <constraint firstItem="rEn-nX-RJS" firstAttribute="leading" secondItem="wu3-tR-VUD" secondAttribute="leading" constant="25" id="kCs-gn-TIn"/>
+                            <constraint firstItem="tay-IU-aYV" firstAttribute="top" secondItem="EOc-Wq-1qi" secondAttribute="bottom" constant="15" id="lTP-pO-wu5"/>
+                            <constraint firstItem="tay-IU-aYV" firstAttribute="top" secondItem="rMO-Vw-Jk7" secondAttribute="bottom" constant="15" id="oXH-r5-Y0q"/>
+                            <constraint firstAttribute="trailing" secondItem="EOc-Wq-1qi" secondAttribute="trailing" constant="15" id="p2U-37-gyr"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="viewPlayer" destination="gbe-f6-6Iw" id="Z8a-rF-5H8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g9N-YY-bSx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2283" y="-714"/>
+        </scene>
         <!--RecordingGPU Image-->
         <scene sceneID="0E9-ze-wVO">
             <objects>
@@ -426,7 +641,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3tl-99-gga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1565" y="-78"/>
+            <point key="canvasLocation" x="1757" y="118"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ci6-sO-Wzm">
@@ -454,6 +669,16 @@
         <image name="flash" width="16" height="24"/>
         <image name="play" width="12" height="14"/>
         <image name="rotate" width="29" height="22"/>
+        <image name="snap_close" width="40" height="40"/>
+        <image name="snap_download" width="40" height="40"/>
+        <image name="snap_facebook" width="40" height="40"/>
+        <image name="snap_flash_off" width="40" height="40"/>
+        <image name="snap_flash_on" width="40" height="40"/>
+        <image name="snap_instagram" width="40" height="40"/>
+        <image name="snap_logo_color" width="60" height="60"/>
+        <image name="snap_rotate" width="40" height="40"/>
+        <image name="snap_rotate_pressed" width="40" height="40"/>
+        <image name="snap_twitter" width="40" height="40"/>
         <image name="stop" width="12" height="12"/>
     </resources>
 </document>
