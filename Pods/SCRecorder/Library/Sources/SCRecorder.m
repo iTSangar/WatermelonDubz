@@ -297,9 +297,10 @@ static char* SCRecorderPhotoOptionsContext = "PhotoOptionsContext";
     }
     
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    session.automaticallyConfiguresApplicationAudioSession = NO;
     _beginSessionConfigurationCount = 0;
     _captureSession = session;
-    
+  
     [self beginConfiguration];
     
     BOOL success = [self _reconfigureSession];

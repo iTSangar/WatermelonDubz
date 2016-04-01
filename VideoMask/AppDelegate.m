@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#include <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
 
@@ -17,7 +18,45 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+  
+  
+  dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    // Add code here to do background processing
+    //
+    //
+    AVAudioSession *session1 = [AVAudioSession sharedInstance];
+    [session1 setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionMixWithOthers|AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetooth error:nil];
+    
+    
+    [session1 setActive:YES error:nil];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    
+    dispatch_async( dispatch_get_main_queue(), ^{
+      // Add code here to update the UI/send notifications based on the
+      // results of the background processing
+    });
+  });
+  
+
+  
     return YES;
+}
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
+  if(event.type == UIEventTypeRemoteControl)
+  {
+    switch(event.subtype)
+    {
+      case UIEventSubtypeRemoteControlPause:
+      case UIEventSubtypeRemoteControlStop:
+        break;
+      case UIEventSubtypeRemoteControlPlay:
+        break;
+      default:
+        break;
+    }
+  }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
