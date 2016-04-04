@@ -6,5 +6,6 @@ target 'VideoMask' do
     pod 'SCRecorder', '~> 2.5'
     pod 'TTRangeSlider', '~> 1.0'
     pod 'SDRecordButton', '~> 1.0'
+    pod 'KVNProgress', '~> 2.2'
 end
 

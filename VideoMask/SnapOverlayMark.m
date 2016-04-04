@@ -17,14 +17,6 @@
 
 @implementation SnapOverlayMark
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
   self = [super initWithFrame:frame];
@@ -45,18 +37,6 @@
   
   CGSize size = self.bounds.size;
   
-  //[_watermarkLabel sizeToFit];
-  //CGRect watermarkFrame = _watermarkLabel.frame;
-  //watermarkFrame.origin.x = size.width - watermarkFrame.size.width - inset;
-  //watermarkFrame.origin.y = size.height - watermarkFrame.size.height - inset;
-  //_watermarkLabel.frame = watermarkFrame;
-  
-  //[_timeLabel sizeToFit];
-  //CGRect timeLabelFrame = _timeLabel.frame;
-  //timeLabelFrame.origin.y = inset;
-  //timeLabelFrame.origin.x = inset;
-  //_timeLabel.frame = timeLabelFrame;
-  
   [_sertanejoWatermark sizeToFit];
   CGRect watermarkFrame = _sertanejoWatermark.frame;
   watermarkFrame.size.width = size.width;
@@ -68,8 +48,7 @@
 
 - (void)updateWithVideoTime:(NSTimeInterval)time
 {
-  //NSDate *currentDate = [self.date dateByAddingTimeInterval:time];
-  //_timeLabel.text = [NSString stringWithFormat:@"%@", currentDate];
+  
 }
 
 @end

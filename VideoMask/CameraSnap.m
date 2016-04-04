@@ -11,6 +11,7 @@
 #import "SDRecordButton.h"
 #import "SnapPreview.h"
 #import "SnapOverlayMark.h"
+#import "KVNProgress.h"
 
 const int MAX_TIME = 15;
 
@@ -23,11 +24,10 @@ const int MAX_TIME = 15;
   IBOutlet UIButton *flash;
 }
 
-@property (weak, nonatomic) IBOutlet UIView *cameraPreviewView;
+@property (weak, nonatomic) IBOutlet   UIView         *cameraPreviewView;
 @property (nonatomic, strong) IBOutlet SDRecordButton *recordButton;
 @property (nonatomic, strong)          NSTimer        *progressTimer;
 @property (nonatomic)                  CGFloat        progress;
-
 @property (nonatomic, strong) IBOutlet UIVisualEffectView *blurView;
 
 @end
@@ -46,7 +46,6 @@ const int MAX_TIME = 15;
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,6 +60,7 @@ const int MAX_TIME = 15;
   [super viewDidAppear:animated];
   [_recorder startRunning];
   [self.recordButton setEnabled:YES];
+  [KVNProgress setConfiguration:[KVNProgressConfiguration defaultConfiguration]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -137,7 +137,6 @@ const int MAX_TIME = 15;
 
 - (void)updateProgress {
   self.progress += 0.05/MAX_TIME;
-  NSLog(@"progress >>>> %f", self.progress);
   [self.recordButton setProgress:self.progress];
 }
 
@@ -203,7 +202,8 @@ const int MAX_TIME = 15;
   exportSession.videoConfiguration.overlay = overlay;
   
   NSLog(@"Starting exporting");
-  
+  [KVNProgress showProgress:0.0f
+                     status:@"Exportando Vídeo..."];
   
   CFTimeInterval time = CACurrentMediaTime(); // time to complete process
   
@@ -222,12 +222,15 @@ const int MAX_TIME = 15;
     
     NSError *error = exportSession.error;
     if (exportSession.cancelled) {
+      [KVNProgress dismiss];
       NSLog(@"Export was cancelled");
     } else if (error == nil) {
       // success
+      [KVNProgress showSuccessWithStatus:@"Finalizado"];
       [self performSegueWithIdentifier:@"previewSnap" sender:self];
     } else {
       if (!exportSession.cancelled) {
+        [KVNProgress dismiss];
         [[[UIAlertView alloc] initWithTitle:@"Process failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
       }
     }
@@ -301,6 +304,8 @@ const int MAX_TIME = 15;
     
     NSLog(@"%f", progress);
     // update progress here
+    [KVNProgress updateProgress:progress
+                       animated:YES];
   });
 }
 

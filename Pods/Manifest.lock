@@ -1,17 +1,20 @@
 PODS:
   - GPUImage (0.1.7)
+  - KVNProgress (2.2.4)
   - SCRecorder (2.5.3)
   - SDRecordButton (1.0.2)
   - TTRangeSlider (1.0.3)
 
 DEPENDENCIES:
   - GPUImage (~> 0.1)
+  - KVNProgress (~> 2.2)
   - SCRecorder (~> 2.5)
   - SDRecordButton (~> 1.0)
   - TTRangeSlider (~> 1.0)
 
 SPEC CHECKSUMS:
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  KVNProgress: 541edcea5a1fef592aceac8d791a410d38cb499d
   SCRecorder: a8b1deff74c4e03f4f3cfbfceb8fbc4877d166e4
   SDRecordButton: f9d6918b1c874fd6d8a6969c23597edc00f9db67
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e

@@ -28,7 +28,6 @@
   [super didReceiveMemoryWarning];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [_player setItemByAsset:_recordSession.assetRepresentingSegments];
@@ -41,9 +40,7 @@
   
   SCVideoPlayerView *playerView = [[SCVideoPlayerView alloc] initWithPlayer:_player];
   self.viewPlayer.contentMode = UIViewContentModeScaleAspectFill;
-  //playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
   playerView.frame = self.view.frame;
-  //playerView.autoresizingMask = self.viewPlayer.autoresizingMask;
   [self.viewPlayer.superview insertSubview:playerView aboveSubview:self.viewPlayer];
   [self.viewPlayer removeFromSuperview];
   

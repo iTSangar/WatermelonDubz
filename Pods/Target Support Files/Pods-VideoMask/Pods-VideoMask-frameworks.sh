@@ -85,12 +85,14 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-VideoMask/GPUImage.framework"
+  install_framework "Pods-VideoMask/KVNProgress.framework"
   install_framework "Pods-VideoMask/SCRecorder.framework"
   install_framework "Pods-VideoMask/SDRecordButton.framework"
   install_framework "Pods-VideoMask/TTRangeSlider.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-VideoMask/GPUImage.framework"
+  install_framework "Pods-VideoMask/KVNProgress.framework"
   install_framework "Pods-VideoMask/SCRecorder.framework"
   install_framework "Pods-VideoMask/SDRecordButton.framework"
   install_framework "Pods-VideoMask/TTRangeSlider.framework"
