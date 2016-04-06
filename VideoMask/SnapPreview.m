@@ -7,7 +7,6 @@
 //
 
 #import "SnapPreview.h"
-#import "OverlaySCRecorder.h"
 
 @interface SnapPreview ()
 

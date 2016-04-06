@@ -17,6 +17,7 @@ const int MAX_TIME = 15;
 
 @interface CameraSnap () <SCRecorderDelegate, SCAssetExportSessionDelegate>
 {
+  BOOL isMergingVideo;
   SCRecorder *_recorder;
   SCRecordSession *_recordSession;
   SCAssetExportSession *_exportSession;
@@ -58,6 +59,7 @@ const int MAX_TIME = 15;
 - (void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
+  isMergingVideo = NO;
   [_recorder startRunning];
   [self.recordButton setEnabled:YES];
   [KVNProgress setConfiguration:[KVNProgressConfiguration defaultConfiguration]];
@@ -129,6 +131,9 @@ const int MAX_TIME = 15;
 
 - (void)pausedRecording {
   NSLog(@"Paused recording.");
+  if (isMergingVideo)
+    return;
+  
   [self.progressTimer invalidate];
   [_recorder pause:^{
     [self saveAndShowSession:_recorder.session];
@@ -142,6 +147,7 @@ const int MAX_TIME = 15;
 
 - (void)saveAndShowSession:(SCRecordSession *)recordSession
 {
+  isMergingVideo = YES;
   _recordSession = recordSession;
   [self.progressTimer invalidate];
   self.progress = 0.0;
